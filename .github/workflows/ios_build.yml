@@ -17,10 +17,7 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
-
-      - name: Install Dependencies
+      - name: Install Dependencies & Generate Podfile
         run: flutter pub get
 
       - name: Install iOS Pods
