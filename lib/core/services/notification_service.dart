@@ -35,14 +35,24 @@ class NotificationService {
       const AndroidInitializationSettings androidSettings =
           AndroidInitializationSettings('@drawable/app_icon');
 
-      // 3. iOS Initialization Settings
-      const DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
+      // 3. iOS Initialization Settings with notification action categories
+      final DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
         requestAlertPermission: false,
         requestBadgePermission: false,
         requestSoundPermission: false,
+        notificationCategories: [
+          DarwinNotificationCategory(
+            'reminder_actions',
+            actions: [
+              DarwinNotificationAction.plain('mark_done', 'Mark Done'),
+              DarwinNotificationAction.plain('snooze_10', 'Snooze 10m'),
+            ],
+            options: {DarwinNotificationCategoryOption.hiddenPreviewShowTitle},
+          ),
+        ],
       );
 
-      const InitializationSettings initSettings = InitializationSettings(
+      final InitializationSettings initSettings = InitializationSettings(
         android: androidSettings,
         iOS: iosSettings,
       );
@@ -214,6 +224,7 @@ class NotificationService {
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
+        categoryIdentifier: 'reminder_actions',
       );
 
       final NotificationDetails notificationDetails = NotificationDetails(
