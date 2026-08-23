@@ -100,7 +100,6 @@ flow_notes_reminders/
 Before running the app, ensure you have the following installed:
 
 ### 1. Flutter SDK
-- **Location**: `C:\Users\psavl\flutter`
 - **Version**: 3.47.0 (stable channel)
 - **Dart**: 3.13.0
 
@@ -110,11 +109,10 @@ flutter doctor
 ```
 
 ### 2. Android Studio
-- **Install path**: `C:\Program Files\Android\Android Studio`
-- **Bundled JDK (JAVA_HOME)**: `C:\Program Files\Android\Android Studio\jbr`
+- **Install path**: Default Android Studio installation path
+- **Bundled JDK (JAVA_HOME)**: Included in Android Studio
 
 ### 3. Android SDK
-- **Location**: `C:\Users\psavl\AppData\Local\Android\Sdk`
 - **Components installed**:
   - Android SDK Platform 36
   - Android NDK r28c
@@ -135,22 +133,22 @@ Must be **enabled** for Flutter symlinks to work.
 
 ### Step 1 — Open PowerShell and set environment variables
 
-Every new PowerShell session needs these set before running Flutter/ADB commands:
+Every new PowerShell session needs these set before running Flutter/ADB commands (adjust paths based on your installation):
 
 ```powershell
 $env:JAVA_HOME    = "C:\Program Files\Android\Android Studio\jbr"
 $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
-$env:Path = "$env:Path;C:\Users\psavl\flutter\bin;$env:JAVA_HOME\bin;$env:ANDROID_HOME\platform-tools;$env:ANDROID_HOME\emulator;$env:ANDROID_HOME\cmdline-tools\latest\bin"
+$env:Path = "$env:Path;C:\flutter\bin;$env:JAVA_HOME\bin;$env:ANDROID_HOME\platform-tools;$env:ANDROID_HOME\emulator;$env:ANDROID_HOME\cmdline-tools\latest\bin"
 ```
 
-> **Tip:** Flutter is already in your permanent user PATH so `flutter` commands work in new terminals. The extra vars above are needed for ADB and SDK tools.
+> **Tip:** Flutter should be added to your permanent user PATH so `flutter` commands work in new terminals. The extra vars above are needed for ADB and SDK tools.
 
 ---
 
 ### Step 2 — Navigate to the project
 
 ```powershell
-cd C:\Users\psavl\repositories\flow_notes_reminders
+cd path/to/flow_notes_reminders
 ```
 
 ---
@@ -227,7 +225,6 @@ Flutter automatically detects and deploys to your connected phone.
 ### Build a debug APK (for testing)
 
 ```powershell
-cd C:\Users\psavl\repositories\flow_notes_reminders
 flutter build apk --debug
 ```
 
@@ -303,7 +300,7 @@ All 5 unit tests should pass (models, storage, notification scheduling).
 
 | Issue | Fix |
 |-------|-----|
-| `flutter` not recognized | Open a new terminal (PATH was updated) or run `$env:Path = "$env:Path;C:\Users\psavl\flutter\bin"` |
+| `flutter` not recognized | Open a new terminal (PATH was updated) or run `$env:Path = "$env:Path;C:\flutter\bin"` |
 | `JAVA_HOME is not set` | Run `$env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"` |
 | `no emulators found` | Make sure the emulator window is open and booted. Check with `adb devices` |
 | `Gradle build failed` | Run `flutter clean` then `flutter pub get` then `flutter run` again |
@@ -349,22 +346,6 @@ flutter test
 # Analyze code for issues
 flutter analyze
 ```
-
----
-
-## 📋 Environment Paths Reference
-
-| Item | Path |
-|------|------|
-| Flutter SDK | `C:\Users\psavl\flutter` |
-| Flutter binary | `C:\Users\psavl\flutter\bin\flutter.bat` |
-| Android SDK | `C:\Users\psavl\AppData\Local\Android\Sdk` |
-| ADB binary | `C:\Users\psavl\AppData\Local\Android\Sdk\platform-tools\adb.exe` |
-| Emulator binary | `C:\Users\psavl\AppData\Local\Android\Sdk\emulator\emulator.exe` |
-| Java / JDK | `C:\Program Files\Android\Android Studio\jbr` |
-| Android Studio | `C:\Program Files\Android\Android Studio` |
-| Project root | `C:\Users\psavl\repositories\flow_notes_reminders` |
-| Emulator AVD name | `Pixel5_API33` (Pixel 5, Android 13 / API 33, x86_64) |
 
 ---
 
